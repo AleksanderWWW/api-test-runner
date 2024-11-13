@@ -1,8 +1,9 @@
+import json
 import time
+from typing import Callable
 
 import urllib3
-
-from typing import ParamSpec, Callable
+from typing_extensions import ParamSpec
 
 from api_test_runner.response_models.response import Response
 
@@ -20,7 +21,7 @@ def from_urllib(endpoint_client: Callable) -> Callable[..., Response]:
         return Response(
             status_code=result.status,
             elapsed=elapsed,
-            json=result.data,
+            json=json.loads(result.read()),
         )
 
     return wrapper

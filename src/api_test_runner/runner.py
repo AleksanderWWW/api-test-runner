@@ -1,15 +1,25 @@
 import time
-from typing import Callable, Any, Optional
-
-from urllib3 import BaseHTTPResponse
+from typing import (
+    Any,
+    Callable,
+    Optional,
+)
 
 from api_test_runner.response_models.response import Response
-from api_test_runner.response_models.response_attributes import StatusCode, ResponseTime, ResponseJson
+from api_test_runner.response_models.response_attributes import (
+    ResponseJson,
+    ResponseTime,
+    StatusCode,
+)
 
 
 class EndpointTestRunner:
     def __init__(
-            self, *, endpoint_client: Callable[..., Response], cache: bool = False,  **endpoint_params: Any,
+        self,
+        *,
+        endpoint_client: Callable[..., Response],
+        cache: bool = False,
+        **endpoint_params: Any,
     ) -> None:
         self._endpoint_client = endpoint_client
         self._endpoint_params = endpoint_params
@@ -36,24 +46,3 @@ class EndpointTestRunner:
     @property
     def response_json(self) -> ResponseJson:
         return ResponseJson(self._run_endpoint_test().json)
-
-
-if __name__ == "__main__":
-    # @from_requests
-    # def call_google() -> Response:
-    #     import requests
-    #     return requests.get("https://www.google.com")
-    #
-    # runner = ApiTestRunner(endpoint_client=call_google, cache=True)
-    # print(runner.status_code.is_200_like())
-    # print(runner.response_time.less_than(1))
-
-    @from_urllib
-    def call_google() -> BaseHTTPResponse:
-        import urllib3
-        return urllib3.request("GET", "https://www.google.com")
-
-
-    runner = EndpointTestRunner(endpoint_client=call_google, cache=True)
-    print(runner.status_code.is_200_like())
-    print(runner.response_time.less_than(1))

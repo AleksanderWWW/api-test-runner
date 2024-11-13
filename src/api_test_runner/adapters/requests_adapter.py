@@ -1,4 +1,6 @@
-from typing import ParamSpec, Callable
+from typing import Callable
+
+from typing_extensions import ParamSpec
 
 from api_test_runner.response_models.response import Response
 
