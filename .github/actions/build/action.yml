@@ -1,0 +1,21 @@
+---
+name: Build
+description: Build the project
+inputs:
+  working_directory:
+    description: 'Working directory'
+    required: false
+    default: .
+runs:
+    using: "composite"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: AleksanderWWW/api-test-runner
+          path: ${{ inputs.working_directory }}
+
+      - name: Install dependencies
+        working-directory: ${{ inputs.working_directory }}
+        run: pip install -r dev_requirements.txt
+        shell: bash

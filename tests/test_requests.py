@@ -8,13 +8,17 @@ from api_test_runner.runner import EndpointTestRunner
 def call_endpoint_with_json() -> requests.Response:
     return requests.get("https://jsonplaceholder.typicode.com/posts")
 
+
 @from_requests
 def call_endpoint_without_json() -> requests.Response:
     return requests.get("https://www.google.com")
 
+
 @from_requests
 def call_endpoint_with_post() -> requests.Response:
-    return requests.post("https://jsonplaceholder.typicode.com/posts", json={"title": "foo", "body": "bar", "userId": 1})
+    return requests.post(
+        "https://jsonplaceholder.typicode.com/posts", json={"title": "foo", "body": "bar", "userId": 1}
+    )
 
 
 def test_requests_get_with_json():
