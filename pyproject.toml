@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Pure-python framework for defining REST API tests"
 authors = ["AleksanderWWW <alwojnarowicz@gmail.com>"]
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [
+    { include = "api_test_runner", from = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

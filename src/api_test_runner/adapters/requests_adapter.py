@@ -1,6 +1,6 @@
 from typing import ParamSpec, Callable
 
-from response_models.response import Response
+from api_test_runner.response_models.response import Response
 
 P = ParamSpec("P")
 

@@ -58,6 +58,9 @@ class ResponseJson:
     def not_empty(self) -> bool:
         return bool(self.data)
 
+    def is_empty(self) -> bool:
+        return not self.data
+
     def has_key(self, key: str) -> bool:
         return key in self.data
 
