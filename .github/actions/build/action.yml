@@ -19,3 +19,8 @@ runs:
         working-directory: ${{ inputs.working_directory }}
         run: pip install -r dev_requirements.txt
         shell: bash
+
+      - name: List dependencies
+        working-directory: ${{ inputs.working_directory }}
+        run: pip list
+        shell: bash
